@@ -7,7 +7,7 @@
 
         // API  
         const api = {
-            url: "http://api.openweathermap.org/data/2.5/",
+            url: "https://api.openweathermap.org/data/2.5/",
             key: "bb38ad245b56243dda6f74c97a8bcf6c"
         }
         // const api = `http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb38ad245b56243dda6f74c97a8bcf6c`
