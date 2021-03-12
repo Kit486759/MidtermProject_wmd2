@@ -2,100 +2,33 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="./style.css">
-    <title>Weather App</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>World Weather</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
 </head>
 
 <body>
     <div class="app-wrap">
-        <header>
-            <h2>Weather App</h2>
-            <input id="searchInput" type="text" placeholder="Search by city name......" value="">
-            <button id="searchBtn" onclick="searchWeather()">Search</button>
-        </header>
-        <div class="content">
-            <div id="city" value="Vancouver"></div>
-            <div id="date"></div>
-            <div id="temp"></div>
-            <div id="weather"></div>
+        <div class="container">
+            <header>
+                <h2>World Weather </h2>
+                <input id="searchInput" type="text" placeholder="Search by city name......">
+                <button id="searchBtn" onclick="searchClick()">Search</button>
+            </header>
+            <div id="content">
+                <div id="city"></div>
+                <div id="date"></div>
+                <div id="temp"></div>
+                <div id="feelTemp"></div>
+                <div id="minmaxTemp"></div>
+                <div id="weather"></div>
+            </div>
         </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
 
-    <script>
-
-
-
-
-        let city = document.getElementById("city").getAttribute('value')
-        let temp = document.getElementById("temp")
-        let timezone = document.getElementById("date")
-        
-
-        // API  
-        const APIkey = "bb38ad245b56243dda6f74c97a8bcf6c"
-        let api = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}`
-        // const api = `http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=bb38ad245b56243dda6f74c97a8bcf6c`
-
-
-        // Testing search button and search box - 21mar09
-        let searchBtn = document.getElementById("searchBtn")
-        let searchInput = document.getElementById("searchInput")
-
-        // fetch 
-
-
-        fetch(api)
-
-            .then(response => {
-                if (response.status == 200) {
-                    // alert("connect success");
-                    response.json().then(data => {
-
-
-                        console.log(data);
-                        // console.log(data.name);
-                        // console.log(data.main.temp)
-
-                        document.getElementById("city").innerHTML = data.name
-                        timezone.innerHTML = data.timezone
-                        document.getElementById("weather").innerHTML = data.weather[0].description
-                        temp.innerHTML = data.main.temp
-
-                        
-                    })
-                }
-            })
-
-            
-        function searchWeather() {
-            // searchInput.innerHTML=""
-            // console.log(searchInput.value)
-            let test = searchInput.value;
-            document.getElementById("city").innerHTML=`${test}`;
-            document.getElementById("city").setAttribute("value" , `${test}`)
-            
-            console.log(test)
-
-           
-        }
-
-
-
-        // fetch(`https://maps.googleapis.com/maps/api/timezone/outputFormat?parameters`)
-
-        //     .then(response => {
-        //         if (response.status == 200) {
-        //             // alert("connect success");
-        //             response.json().then(timezone => {
-        //                 console.log(timezone);
-        //             })
-        //         }
-        //     })
-
-
-    </script>
 
 </body>
 
