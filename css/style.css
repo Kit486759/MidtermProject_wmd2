@@ -6,6 +6,7 @@
 body {
   font-family: "Comfortaa", cursive;
   background-color: black;
+  margin: 0;
 }
 
 .app-wrap {
@@ -24,10 +25,10 @@ body {
 
 .app-wrap .container header h2 {
   font-family: "Comfortaa", cursive;
-  font-size: 40px;
+  font-size: 35px;
   text-shadow: 3px 3px white;
   color: #a50101;
-  margin: 30px 0 15px;
+  margin: -20px 0 15px;
 }
 
 .app-wrap .container header #searchInput {
@@ -36,7 +37,7 @@ body {
 
 .app-wrap .container #content {
   color: white;
-  margin-top: 2em;
+  margin-top: 10px;
 }
 
 .app-wrap .container #content #city {
@@ -50,7 +51,7 @@ body {
 }
 
 .app-wrap .container #content #temp {
-  font-size: 80px;
+  font-size: 60px;
   font-weight: bold;
   color: white;
 }
@@ -60,25 +61,30 @@ body {
 }
 
 .forecase-wrap {
-  background-color: sienna;
-  width: 600px;
-  margin: 100px auto;
+  width: 70vw;
+  margin: 45px auto;
+  border-radius: 50px;
+  width: 984px;
+  height: 200px;
 }
 
 .forecase-wrap .forecastContent {
-  position: relative;
   color: white;
-  width: 600px;
-  height: 200px;
-  margin: auto;
+  margin: 0;
 }
 
 .forecase-wrap .forecastContent ul {
-  margin: 0;
-  padding: 0;
+  width: 150px;
+  margin: 0 5px;
+  padding: 5px;
   list-style: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: inline-block;
+  text-align: center;
+  background-color: gray;
+  border-radius: 25px;
+}
+
+.forecase-wrap .forecastContent ul li {
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
