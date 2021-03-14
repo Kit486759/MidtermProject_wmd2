@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>World Weather</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="app-wrap">
+        <div class="container">
+            <header>
+                <h2>World Weather </h2>
+                <input id="searchInput" type="text" placeholder="Search by city name......">
+                <button id="searchBtn" onclick="searchClick()">Search</button>
+            </header>
+            <div id="forecastContent">
+                <ul>
+                    <li id="day-1"></li>
+                    <li id="day-2"></li>
+                    <li id="day-3"></li>
+                    <li id="day-4"></li>
+                    <li id="day-5"></li>
+                    <li id="day-6"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        const api = {
+
+            key: "bb38ad245b56243dda6f74c97a8bcf6c",
+            url: "https://api.openweathermap.org/data/2.5/forecast?q="
+
+        }
+        //    api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
+
+        window.addEventListener("load", defaultForecast)
+
+        function defaultForecast() {
+            console.log("test forecast")
+
+            fetch(`${api.url}vancouver&appid=${api.key}`)
+
+                .then(data => {
+                    if (data.status == 200) {
+                        // console.log(data);
+                        return data.json();
+                    } else {
+                        //=============================== Pop alert message if wrong input.
+                        alert("Something wrong. Please check your input and try again.")
+                    }
+                })
+                .then(function test(data) {
+                    console.log(data)
+                    console.log(data.list[0].dt_txt)
+                    console.log(data.list[7].dt_txt)
+                    console.log(data.list[15].dt_txt)
+                    console.log(data.list[23].dt_txt)
+                    console.log(data.list[31].dt_txt)
+                    console.log(data.list[39].dt_txt)
+                    // let date1 = data.list[0].dt_txt
+                    console.log(data.list[0].dt_txt[3])
+
+                    // Set day1 - day6
+                    let day1 = document.getElementById("day-1")
+                    let day2 = document.getElementById("day-2")
+                    let day3 = document.getElementById("day-3")
+                    let day4 = document.getElementById("day-4")
+                    let day5 = document.getElementById("day-5")
+                    let day6 = document.getElementById("day-6")
+
+                    //=============================== Get today by newDate() 
+                    let today = new Date();
+                    let dateValue = today.getDate();
+                    console.log(dateValue)
+
+                    //=============================== Set month array as getMonth return index
+                    const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    let monthValue = monthArr[today.getMonth()];
+
+                     let forecastTemp = data.list[0].main.temp
+
+                    //=============================== Set number dateValue to represent the next 6 days
+                    day1.innerText = (`Test${dateValue + 1}${monthValue}${forecastTemp}`)
+                    day2.innerText = (`Test${dateValue + 2}${monthValue}`)
+                    day3.innerText = (`Test${dateValue + 3}${monthValue}`)
+                    day4.innerText = (`Test${dateValue + 4}${monthValue}`)
+                    day5.innerText = (`Test${dateValue + 5}${monthValue}`)
+                    day6.innerText = (`Test${dateValue + 6}${monthValue}`)
+
+                    
+
+
+
+                })
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

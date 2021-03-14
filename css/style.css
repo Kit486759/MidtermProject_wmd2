@@ -5,16 +5,14 @@
 
 body {
   font-family: "Comfortaa", cursive;
+  background-color: black;
 }
 
 .app-wrap {
-  background-image: url(../image/vancouver.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
+  background-color: #618099;
   border-radius: 250px;
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   padding: 3em 3em 2.5em;
   margin: 2em auto 0;
   text-align: center;
@@ -59,5 +57,28 @@ body {
 
 .app-wrap .container #content #weather {
   font-size: 30px;
+}
+
+.forecase-wrap {
+  background-color: sienna;
+  width: 600px;
+  margin: 100px auto;
+}
+
+.forecase-wrap .forecastContent {
+  position: relative;
+  color: white;
+  width: 600px;
+  height: 200px;
+  margin: auto;
+}
+
+.forecase-wrap .forecastContent ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 /*# sourceMappingURL=style.css.map */

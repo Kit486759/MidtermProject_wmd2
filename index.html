@@ -25,11 +25,123 @@
                 <div id="weather"></div>
             </div>
         </div>
-    </div>
 
+    </div>
+    <div class="forecase-wrap">
+        <div class="forecastContent">
+            <ul>
+                <li id="day-1"></li>
+            </ul>
+            <ul>
+                <li id="day-2"></li>
+            </ul>
+            <ul>
+                <li id="day-3"></li>
+            </ul>
+            <ul>
+                <li id="day-4"></li>
+            </ul>
+            <ul>
+                <li id="day-5"></li>
+            </ul>
+            <ul>
+                <li id="day-6"></li>
+            </ul>
+        </div>
+    </div>
     <script src="./js/script.js"></script>
 
+    <script>
 
+
+        window.addEventListener("load", defaultForecast)
+
+        function defaultForecast() {
+            console.log("test forecast")
+
+            fetch(`${api.url}forecast?q=vancouver&units=metric&appid=${api.key}`)
+
+                .then(data => {
+                    if (data.status == 200) {
+                        // console.log(data);
+                        return data.json();
+                    } else {
+                        //=============================== Pop alert message if wrong input.
+                        alert("Something wrong. Please check your input and try again.")
+                    }
+                })
+                .then(function diaplayDefaultForecast(data) {
+                    console.log(data);
+
+                    // Set day1 - day6
+                    let day1 = document.getElementById("day-1")
+                    let day2 = document.getElementById("day-2")
+                    let day3 = document.getElementById("day-3")
+                    let day4 = document.getElementById("day-4")
+                    let day5 = document.getElementById("day-5")
+                    let day6 = document.getElementById("day-6")
+
+                    let day1Value = data.list[0]
+                    let day2Value = data.list[7]
+                    let day3Value = data.list[15]
+                    let day4Value = data.list[23]
+                    let day5Value = data.list[31]
+                    let day6Value = data.list[39]
+
+
+                    //=============================== Set day and month
+                    let today = new Date();
+                    let dateValue = today.getDate();
+                    // console.log(dateValue)
+
+                    const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                        "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    let monthValue = monthArr[today.getMonth()];
+                    console.log(data.list[0].main.temp_min)
+
+                    //===============================  Set Weather Image
+
+                    weatherImg = {
+                        url: `http://openweathermap.org/img/wn/`,
+                        format: `@2x.png`
+                    }
+                    //=============================== Set number dateValue to represent the next 6 days
+                    day1.innerHTML = (`${dateValue + 1}${monthValue}<br>${day1Value.main.temp}
+                    <br><img src="${weatherImg.url}${day1Value.weather[0].icon}${weatherImg.format}">
+                    <br>${day1Value.weather[0].main}<br>${day1Value.main.temp_min} / ${day1Value.main.temp_max}`)
+
+                    day2.innerHTML = (`${dateValue + 2}${monthValue}<br>${data.list[7].main.temp}
+                    <br>IMAGE<br>${data.list[7].main.temp_min} / ${data.list[7].main.temp_max}`)
+
+                    day3.innerHTML = (`${dateValue + 3}${monthValue}<br>${data.list[15].main.temp}
+                    <br>IMAGE<br>${data.list[15].main.temp_min} / ${data.list[15].main.temp_max}`)
+
+                    day4.innerHTML = (`${dateValue + 4}${monthValue}<br>${data.list[23].main.temp}
+                    <br>IMAGE<br>${data.list[23].main.temp_min} / ${data.list[23].main.temp_max}`)
+
+                    day5.innerHTML = (`${dateValue + 5}${monthValue}<br>${data.list[31].main.temp}
+                    <br>IMAGE<br>${data.list[31].main.temp_min} / ${data.list[31].main.temp_max}`)
+
+                    day6.innerHTML = (`${dateValue + 6}${monthValue}<br>${data.list[39].main.temp}
+                    <br>IMAGE<br>${data.list[39].main.temp_min} / ${data.list[39].main.temp_max}`)
+
+
+
+
+
+
+
+                })
+
+
+        }
+
+
+
+
+
+
+    </script>
 </body>
 
 </html>
