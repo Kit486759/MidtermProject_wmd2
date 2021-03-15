@@ -148,10 +148,10 @@ body {
 
 footer {
     background-color: black;
-    position: absolute;
+    position: fixed;
     bottom:0;
     width: 100%;
-    height: 75px;
+    // margin-bottom:0;
     a {
         text-decoration: none;
         color: white;
