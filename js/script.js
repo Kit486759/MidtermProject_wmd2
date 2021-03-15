@@ -153,15 +153,28 @@ function searchWeather(cityName) {
 
                     //=============================== Set day and month
                     let today = new Date();
-                    let dateValue = today.getDate();
+                   
                     // console.log(dateValue)
+
 
                     const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
                         "Aug", "Sep", "Oct", "Nov", "Dec"];
                     let monthValue = monthArr[today.getMonth()];
 
                     //=============================== Set Day as String form
-                    const dayArr = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+                    const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+                   
+//=============================== getDate + 1~6 and setDate as new Date then store in variable
+                    let secondDay = new Date(new Date().setDate(today.getDate() + 1));
+                    let thirdDay = new Date(new Date().setDate(today.getDate() + 2));
+                    let fourthDay = new Date(new Date().setDate(today.getDate() + 3));
+                    let fifthDay = new Date(new Date().setDate(today.getDate() + 4));
+                    let sixthDay = new Date(new Date().setDate(today.getDate() + 5));
+                    let seventhDay = new Date(new Date().setDate(today.getDate() + 6));
+                   
+                    console.log(secondDay)
+
                     // let dayValue = dayArr[today.getDay()];
                     // console.log(dayArr[today.getDay() + 1])
                     // console.log(dayValue, [1])
@@ -174,53 +187,56 @@ function searchWeather(cityName) {
 
                     //=============================== Insert all information day1 to day6 
                     // date / temp / weather img and weather description 
-                    day1.innerHTML = (`${dateValue + 1} ${monthValue} ${dayArr[today.getDay() + 1]}
-                    <br>${Math.round(day1Value.main.temp)}°c
+
+                    day1.innerHTML = (`${secondDay.getDate()} ${monthValue} ${dayArr[secondDay.getDay()]}
+                    <br><p>${Math.round(day1Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day1Value.weather[0].icon}${weatherImg.format}">
                     <br>${day1Value.weather[0].main}`)
 
-                    day2.innerHTML = (`${dateValue + 2} ${monthValue} ${dayArr[today.getDay() + 2]}
-                    <br>${Math.round(day2Value.main.temp)}°c
+                    day2.innerHTML = (`${thirdDay.getDate()} ${monthValue} ${dayArr[thirdDay.getDay()]}
+                    <br><p>${Math.round(day2Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day2Value.weather[0].icon}${weatherImg.format}">
                     <br>${day2Value.weather[0].main}`)
 
-                    day3.innerHTML = (`${dateValue + 3} ${monthValue} ${dayArr[today.getDay() + 3]}
-                    <br>${Math.round(day3Value.main.temp)}°c
+                    day3.innerHTML = (`${fourthDay.getDate()} ${monthValue} ${dayArr[fourthDay.getDay()]}
+                    <br><p>${Math.round(day3Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day3Value.weather[0].icon}${weatherImg.format}">
                     <br>${day3Value.weather[0].main}`)
 
-                    day4.innerHTML = (`${dateValue + 4} ${monthValue} ${dayArr[today.getDay() + 4]}
-                    <br>${Math.round(day4Value.main.temp)}°c
+                    day4.innerHTML = (`${fifthDay.getDate()} ${monthValue} ${dayArr[fifthDay.getDay()]}
+                    <br><p>${Math.round(day4Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day4Value.weather[0].icon}${weatherImg.format}">
                     <br>${day4Value.weather[0].main}`)
 
-                    day5.innerHTML = (`${dateValue + 5} ${monthValue} ${dayArr[today.getDay() + 5]}
-                    <br>${Math.round(day5Value.main.temp)}°c
+                    day5.innerHTML = (`${sixthDay.getDate()} ${monthValue} ${dayArr[sixthDay.getDay()]}
+                    <br><p>${Math.round(day5Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day5Value.weather[0].icon}${weatherImg.format}">
                     <br>${day5Value.weather[0].main}`)
 
-                    day6.innerHTML = (`${dateValue + 6} ${monthValue} ${dayArr[today.getDay() + 6]}
-                    <br>${Math.round(day6Value.main.temp)}°c
+                    day6.innerHTML = (`${seventhDay.getDate()} ${monthValue} ${dayArr[seventhDay.getDay()]}
+                    <br><p>${Math.round(day6Value.main.temp)}°c</p>
                     <br><img src="${weatherImg.url}${day6Value.weather[0].icon}${weatherImg.format}">
                     <br>${day6Value.weather[0].main}`)
+
                 })
         })
-        return refreshCityName;
+//=============================== Store the city variable prepare for refresh function 
+    return refreshCityName;
 }
 
-// Default weather - vancouver
+//=============================== Default weather - vancouver
 window.addEventListener("load", defaultWeather)
 function defaultWeather() {
     searchWeather("vancouver")
 }
 
-// Refresh function 
+//=============================== Refresh function 
 function refresh() {
 
-    // update the data by city search result
+//=============================== update the data by city search result
     searchWeather(`${refreshCityName}`)
     console.log("test refresh")
 }
 
-// Refresh time = 120000 Milliseconds = every 2 minutes & start the refresh function
+//=============================== Refresh time = 120000 Milliseconds = every 2 minutes & start the refresh function
 setInterval(refresh, 120000)
