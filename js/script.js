@@ -47,7 +47,6 @@ function searchClick() {
 
 function searchWeather(cityName) {
 
-    refreshCityName = cityName;
     //=============================== Fetch data
     fetch(`${api.url}weather?q=${cityName}&units=metric&appid=${api.key}`)
 
@@ -67,12 +66,12 @@ function searchWeather(cityName) {
             }
         })
         .then(function displayData(data) {
-            console.log(data)
-            console.log("city" + data.name)
-            console.log("temp" + data.main.temp)
-            console.log("min temp" + data.main.temp_min)
-            console.log("max temp" + data.main.temp_max)
-            console.log("weather" + data.weather[0].main)
+            // console.log(data)
+            // console.log("city" + data.name)
+            // console.log("temp" + data.main.temp)
+            // console.log("min temp" + data.main.temp_min)
+            // console.log("max temp" + data.main.temp_max)
+            // console.log("weather" + data.weather[0].main)
 
             let city = document.getElementById("city")
             city.innerText = `${data.name} ,${data.sys.country}`
@@ -81,7 +80,7 @@ function searchWeather(cityName) {
             //=============================== Get today by newDate()
             let today = new Date();
             let dateValue = today.getDate();
-
+            console.log(`datevalue test ${today}`)
             //===============================Test get date
             // console.log(`date${today.getDay()} month${today.getMonth()} year${yearValue} day${dayValue}`)
 
@@ -172,8 +171,10 @@ function searchWeather(cityName) {
                     let fifthDay = new Date(new Date().setDate(today.getDate() + 4));
                     let sixthDay = new Date(new Date().setDate(today.getDate() + 5));
                     let seventhDay = new Date(new Date().setDate(today.getDate() + 6));
-                   
-                    console.log(secondDay)
+                  
+
+                    console.log(today.getDate()+20  ,`result is wrong as 20 days later, should jump to next month`)
+                    console.log(new Date(new Date().setDate(19+20))   ,` Use setDate today + number days later to get the expect day info`)
 
                     // let dayValue = dayArr[today.getDay()];
                     // console.log(dayArr[today.getDay() + 1])
@@ -221,7 +222,7 @@ function searchWeather(cityName) {
                 })
         })
 //=============================== Store the city variable prepare for refresh function 
-    return refreshCityName;
+    return refreshCityName = cityName;
 }
 
 //=============================== Default weather - vancouver
